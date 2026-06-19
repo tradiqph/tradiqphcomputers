@@ -2,10 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { CartButton } from "@/components/store/CartButton";
 import { NAV_LINKS } from "@/lib/constants";
@@ -18,16 +17,7 @@ function isNavActive(pathname: string, href: string) {
 
 export function Navbar() {
   const pathname = usePathname();
-  const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [loggingOut, setLoggingOut] = useState(false);
-
-  async function handleLogout() {
-    setLoggingOut(true);
-    await fetch("/api/auth/logout", { method: "POST" });
-    router.push("/");
-    router.refresh();
-  }
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-md">
@@ -73,26 +63,17 @@ export function Navbar() {
               Get a Quote
             </ShimmerButton>
           </Link>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleLogout}
-            disabled={loggingOut}
-            className="cursor-pointer border-border transition-colors duration-200 hover:border-[#d4af37] hover:text-[#d4af37]"
-          >
-            {loggingOut ? "..." : "Logout"}
-          </Button>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
           <CartButton />
           <button
-          type="button"
-          className="cursor-pointer rounded-md p-2 text-foreground transition-colors duration-200 hover:text-[#d4af37] md:hidden"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-        >
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            type="button"
+            className="cursor-pointer rounded-md p-2 text-foreground transition-colors duration-200 hover:text-[#d4af37] md:hidden"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
       </nav>
@@ -124,14 +105,6 @@ export function Navbar() {
                 Get a Quote
               </ShimmerButton>
             </Link>
-            <Button
-              variant="outline"
-              onClick={handleLogout}
-              disabled={loggingOut}
-              className="cursor-pointer"
-            >
-              Logout
-            </Button>
           </div>
         </div>
       )}

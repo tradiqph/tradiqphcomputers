@@ -5,7 +5,6 @@ Next.js website for [TRADIQPH Computer IT Services](https://github.com/tradiqph/
 ## Features
 
 - Multi-page site (Home, Services, Store, About, Contact)
-- Coming Soon maintenance mode with admin preview login
 - IT hardware store with cart
 - Xendit payment integration (Payment Links)
 
@@ -22,12 +21,6 @@ Open [http://localhost:3000](http://localhost:3000).
 ### Environment Variables
 
 See [`.env.example`](.env.example) for `XENDIT_SECRET_KEY`, `XENDIT_WEBHOOK_TOKEN`, and `NEXT_PUBLIC_SITE_URL`.
-
-### Admin Login (preview mode)
-
-- URL: `/admin/login`
-- Username: `admin`
-- Password: `TradIQPH`
 
 ## Deploy
 
